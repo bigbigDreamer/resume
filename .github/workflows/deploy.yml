@@ -3,17 +3,21 @@ name: github pages
 on:
   push:
     branches:
-      - master  # Set a branch name to trigger deployment
+      - main  # Set a branch name to trigger deployment
   workflow_dispatch:
 
 jobs:
   deploy:
     runs-on: ubuntu-18.04
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - name: Checkout # 将仓库内master分支的内容下载到工作目录
+        uses: actions/checkout@v3 # 脚本来自 https://github.com/actions/checkout
         with:
-          node-version: 14
+          ref: main
+      - name: Use Node.js 14 # 配置Node环境
+        uses: actions/setup-node@v3 # 配置脚本来自 https://github.com/actions/setup-node
+        with:
+          node-version: "14"
 
       - run: npm install
       - run: npm run build
