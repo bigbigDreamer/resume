@@ -26,5 +26,5 @@ jobs:
           cname: resume.bigdreamer.cc
           allow_empty_commit: true
           commit_message: ${{ github.event.head_commit.message }}
-          publish_branch: master
+          publish_branch: main
           force_orphan: true
